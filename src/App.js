@@ -1,8 +1,10 @@
 // import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter,Route,Routes  } from 'react-router-dom';
+import Home from './Components/Home/home';
 import Login from './Components/Login/login';
 import SignUp from './Components/SignUp/signUp';
+import NavbarHome from './Components/Navbar/navbar';
 
 function App() {
   return (
@@ -24,14 +26,15 @@ function App() {
     // </div>
     <div>
       {/* <h1>On 3000</h1> */}
+      <NavbarHome></NavbarHome>
       <BrowserRouter>
         <Routes>
-              <Route path="/login"  element={<Login/>}/>
-              <Route path="/signUp" element={<SignUp/>}/>
+          <Route path="/" element={<Home />} /> 
+          <Route path="/login" element={<Login />} />
+          <Route path="/signUp" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </div>
-
   );
 }
 
