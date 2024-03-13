@@ -16,7 +16,7 @@ function NavbarHome() {
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="#pricing">Store</Nav.Link>
                             <Nav.Link href="#features">About</Nav.Link>
-                            <Nav.Link href="#features">Contact</Nav.Link>
+                            <Nav.Link href="contacts">Contact</Nav.Link>
                         </Nav>
                         <Nav>
                             <Nav.Link href="login">Login</Nav.Link>
