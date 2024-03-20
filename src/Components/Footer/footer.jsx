@@ -16,7 +16,7 @@ function Footer(){
                         <div className="col-md-4 mb-5">
                             <h3 className="mb-4">Contact Us</h3>
                             <p>Pune, 411037 </p>
-                            <p>Maharashhtra, India</p>
+                            <p>Maharashtra, India</p>
                             <p>Phone: (+91) 92847 43488</p>
                             <p>Email: rp.kumbhar2001@gmail.com</p>
                         </div>
