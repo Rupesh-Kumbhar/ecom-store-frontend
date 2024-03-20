@@ -212,6 +212,116 @@ function Home() {
                 </div>
             </div>
 
+            <div className="col-sm-12 p-0 my-5">
+                <p className="home-heading-names">Latest Products</p>
+            </div>
+
+            <div className="col-sm-12 p-0">
+                <div className="col-sm-9 mx-auto p-0">
+                    <div className="col-sm-12 p-0 row m-0 justify-content-between">
+                        <div className="latest-product-card-w-33 p-0">
+                            <img
+                                src="assets/featured-images/7.jpg"
+                                className="d-block w-100 carousel-latest-products"
+                                alt="..."
+                            />
+                            <div className="row m-0 justify-content-between">
+                                <div className="w-auto p-0">
+                                    <h5 className="pt-4">LG 27Ml600</h5>
+                                </div>
+                                <div className="w-auto p-0">
+                                    <p className="pt-4">Price : 14,499</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="latest-product-card-w-33 p-0">
+                            <img
+                                src="assets/featured-images/i clever.jpg"
+                                className="d-block w-100 carousel-latest-products"
+                                alt="..."
+                            />
+                            <div className="row m-0 justify-content-between">
+                                <div className="w-auto p-0">
+                                    <h4 className="pt-4">iClever BTH15</h4>
+                                </div>
+                                <div className="w-auto p-0">
+                                    <p className="pt-4">Price : 2,599</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="latest-product-card-w-33 p-0">
+                            <img
+                                src="assets/featured-images/Redragon M686 2.jpg"
+                                className="d-block w-100 carousel-latest-products"
+                                alt="..."
+                            />
+                            <div className="row m-0 justify-content-between">
+                                <div className="w-auto p-0">
+                                    <h4 className="pt-4">Redragon M686</h4>
+                                </div>
+                                <div className="w-auto p-0">
+                                    <p className="pt-4">Price : 3190</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-sm-9 mx-auto p-0">
+                    <div className="col-sm-12 p-0 row m-0 justify-content-between">
+                        <div className="latest-product-card-w-33 p-0">
+                            <img
+                                src="assets/featured-images/mi-notebook-pro.png"
+                                className="d-block w-100 carousel-latest-products"
+                                alt="..."
+                            />
+                            <div className="row m-0 justify-content-between">
+                                <div className="w-auto p-0">
+                                    <h4 className="pt-4">MI Notebook Pro QHD+</h4>
+                                </div>
+                                <div className="w-auto p-0">
+                                    <p className="pt-4">Price : 1,10,000</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="latest-product-card-w-33 p-0">
+                            <img
+                                src="assets/featured-images/Microsoft Wired Ergonomic 1.jpg"
+                                className="d-block w-100 carousel-latest-products"
+                                alt="..."
+                            />
+                            <div className="row m-0 justify-content-between">
+                                <div className="w-auto p-0">
+                                    <h4 className="pt-4">Microsoft Wired Ergonomic</h4>
+                                </div>
+                                <div className="w-auto p-0">
+                                    <p className="pt-4">Price : 103,72</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="latest-product-card-w-33 p-0">
+                            <img
+                                src="assets/featured-images/boat rockerz.jpg"
+                                className="d-block w-100 carousel-latest-products"
+                                alt="..."
+                            />
+                            <div className="row m-0 justify-content-between">
+                                <div className="w-auto p-0">
+                                    <h4 className="pt-4">BoAt Rockerz 450</h4>
+                                </div>
+                                <div className="w-auto p-0">
+                                    <p className="pt-4">Price : 1,499</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <Footer></Footer>
         </div>
     )
