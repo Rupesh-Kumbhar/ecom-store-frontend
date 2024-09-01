@@ -6,14 +6,14 @@ function Home() {
     return (
         <div className="col-sm-12">
 
-            <div className="col-sm-12 p-0 row m-0 ">
+            <div className="col-sm-12 p-4 row m-0 ">
                 <div className="col-sm-7 m-auto p-0">
                     <div className="col-sm-8 m-auto">
                         <div className="home-content-1 mb-2">
                             Best Products for your Productivity
                         </div>
                         <div className="home-content-2 mb-2">
-                            New Tech Collections Trends in 2023
+                            New Tech Collections Trends in 2024
                         </div>
                         <div className="">
                             Get the best deals, enjoy fast and free shipping, and shop with
