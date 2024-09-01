@@ -1,59 +1,60 @@
-import React from 'react';
-import '../Store/store.scss';
+import React from "react";
+import "../Store/store.scss";
+import Carousel from "react-bootstrap/Carousel";
 
 function Store() {
-    return (
-        <div className="col-sm-12 p-0">
-            <div className="col-sm-12 p-0">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="assets/featured-images/9.jpg" className='' alt="" />
-                        </div>
-                        <div class="carousel-item">
-                            <img src="assets/featured-images/oneodio.jpg" alt="" />
-                        </div>
-                        <div class="carousel-item">
-                            <img src="assets/featured-images/Logitech G213 Prodigy 4.jpg" className='' alt="" />
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-            <div className="col-sm-10 mx-auto" >
-                <div className="col-sm-12 p-0 row m-0">
-                    <div className="col-sm-3 p-0">
-                        <div class="list-group">
-                            <button type="button" class="list-group-item list-group-item-action active">
-                                Categories
-                            </button>
-                            <button type="button" class="list-group-item list-group-item-action">Laptops</button>
-                            <button type="button" class="list-group-item list-group-item-action">mouse</button>
-                            <button type="button" class="list-group-item list-group-item-action">Headphones</button>
-                            <button type="button" class="list-group-item list-group-item-action" >gaming desktops</button>
-                        </div>
-                    </div>
-                    <div className="col-sm-9 p-0">
-                        <h5 className='text-center'>
-                            all pro
-                        </h5>
-                    </div>
+  return (
+    <div className="col-sm-12 p-0">
+      <Carousel>
+        <Carousel.Item>
+          <img src="assets/featured-images/laptop-9.jpg" className="carousel-img" alt="First slide"/>
 
-                </div>
-            </div>
+          <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src="assets/featured-images/oneodio.jpg" className="carousel-img" alt="Second slide" />
+
+          <Carousel.Caption>
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src="assets/featured-images/Logitech G213 Prodigy 4.jpg" className="carousel-img" alt="First slide"/>
+
+          <Carousel.Caption>
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+
+      <div className="col-sm-10 mx-auto mt-5 pt-5">
+        <div className="col-sm-12 p-0 row m-0">
+          <div className="col-sm-3 p-0">
+            <div className="list-group">
+              <button type="button"className="list-group-item list-group-item-action active text-center p-3 category-font">Categories</button>
+
+              <button type="button" className="list-group-item list-group-item-action text-center p-3 category-font">All</button>
+
+              <button type="button" className="list-group-item list-group-item-action text-center p-3 category-font">Laptops</button>
+
+              <button type="button" className="list-group-item list-group-item-action text-center p-3 category-font" >Mouse</button>
+
+              <button type="button" className="list-group-item list-group-item-action text-center p-3 category-font" > Headphones </button>
+
+              <button type="button" className="list-group-item list-group-item-action text-center p-3 category-font" > Gaming Desktops </button> 
+              </div>
+          </div>
+          <div className="col-sm-9 p-0">
+            <h2 className="text-center">All Products</h2>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 export default Store;
