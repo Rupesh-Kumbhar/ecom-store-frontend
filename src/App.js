@@ -1,13 +1,15 @@
 // import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter,Route,Routes  } from 'react-router-dom';
-import Home from './Components/Home/home';
-import Login from './Components/Login/login';
-import SignUp from './Components/SignUp/signUp';
-import NavbarHome from './Components/Navbar/navbar';
-import Contacts from './Components/Contact/contact';
-import About from './Components/About/about';
-import Store from './Components/Store/store';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./Components/Home/home";
+import Login from "./Components/Login/login";
+import SignUp from "./Components/SignUp/signUp";
+import NavbarHome from "./Components/Navbar/navbar";
+import Contacts from "./Components/Contact/contact";
+import About from "./Components/About/about";
+import Store from "./Components/Store/store";
+import AdminDashboard from "./Components/AdminPages/adminDashboard/adminDashboard";
+import AdminHome from "./Components/AdminPages/adminHome/adminHome";
 
 function App() {
   return (
@@ -32,12 +34,18 @@ function App() {
       <NavbarHome></NavbarHome>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} /> 
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/about" element={<About />} />
           <Route path="/store" element={<Store />} />
+
+          {/* Admin Dashboard Route, nested Admin Home */}
+          <Route path="/admin-dashboard" element={<AdminDashboard />}>
+            {/* Nested route for Admin Home */}
+            <Route path="adminhome" element={<AdminHome />} />
+          </Route>
         </Routes>
       </BrowserRouter>
 

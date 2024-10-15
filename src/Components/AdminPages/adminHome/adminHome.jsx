@@ -3,7 +3,7 @@ import "./../adminHome/adminHome.scss";
 
 function AdminHome(){
     return(
-        <div>Admin Home</div>
+        <div>Admin Home...this will have the image and welcome text for admin Home</div>
     )
 }
 export default AdminHome;
