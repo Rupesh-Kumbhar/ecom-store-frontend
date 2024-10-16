@@ -10,6 +10,7 @@ import About from "./Components/About/about";
 import Store from "./Components/Store/store";
 import AdminDashboard from "./Components/AdminPages/adminDashboard/adminDashboard";
 import AdminHome from "./Components/AdminPages/adminHome/adminHome";
+import AddProduct from "./Components/AdminPages/addProduct/addProduct";
 
 function App() {
   return (
@@ -44,7 +45,8 @@ function App() {
           {/* Admin Dashboard Route, nested Admin Home */}
           <Route path="/admin-dashboard" element={<AdminDashboard />}>
             {/* Nested route for Admin Home */}
-            <Route path="adminhome" element={<AdminHome />} />
+            <Route path="home" element={<AdminHome />} />
+            <Route path="add-product" element ={ <AddProduct /> }  />
           </Route>
         </Routes>
       </BrowserRouter>
