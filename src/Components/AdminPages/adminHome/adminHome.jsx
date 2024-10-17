@@ -1,6 +1,7 @@
 import React from "react";
 import "./../adminHome/adminHome.scss";
-import { CardBody,Card,Button } from "reactstrap";
+import {Button } from "reactstrap";
+import { Link } from 'react-router-dom';
 
 function AdminHome(){
     return(
@@ -26,8 +27,10 @@ function AdminHome(){
             </div>
         </div>
         <div className="col-sm-12 p-0 mt-5 text-center">
-              {/* <Button className="add-pro-admin-btn w-50" onClick={()=>{goAddProduct()}}>Add Product</Button> */}
-              <Button className="add-pro-admin-btn w-50" >Add Product</Button>
+          {/* need to add onclick() for add product  */}
+              <Link to="/admin-dashboard/add-product" >
+                <Button className="add-pro-admin-btn w-50" to="/admin-dashboard/add-product" >Add Product</Button>
+              </Link>
         </div>
       </div>
     )

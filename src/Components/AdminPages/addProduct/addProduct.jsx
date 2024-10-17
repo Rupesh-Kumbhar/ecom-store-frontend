@@ -3,7 +3,7 @@ import "./../addProduct/addProduct.scss";
 
 function AddProduct(){
     return(
-        <div>Add Product</div>
+        <div className="col-sm-12 p-0" >Add Product</div>
     )
 }
 
