@@ -11,6 +11,12 @@ import Store from "./Components/Store/store";
 import AdminDashboard from "./Components/AdminPages/adminDashboard/adminDashboard";
 import AdminHome from "./Components/AdminPages/adminHome/adminHome";
 import AddProduct from "./Components/AdminPages/addProduct/addProduct";
+import UploadProductImage from "./Components/AdminPages/uploadProductImage/uploadProductImage";
+import AddCategory from "./Components/AdminPages/addCategory/addCategory";
+import ViewProducts from "./Components/AdminPages/viewProducts/viewProducts";
+import ManageOrders from "./Components/AdminPages/manageOrders/manageOrders";
+import ManageCategories from "./Components/AdminPages/manageCategories/manageCategories";
+import ViewUsers from "./Components/AdminPages/viewUsers/viewUsers";
 
 function App() {
   return (
@@ -47,6 +53,14 @@ function App() {
             {/* Nested route for Admin Home */}
             <Route path="home" element={<AdminHome />} />
             <Route path="add-product" element ={ <AddProduct /> }  />
+            <Route path="upload-product-image" element={ <UploadProductImage /> } />
+
+            <Route path="add-category" element={ <AddCategory /> } />
+            <Route path="view-products" element={ <ViewProducts /> } />
+            <Route path="manage-orders" element={<ManageOrders />} />
+            <Route path="manage-categories" element={<ManageCategories />} />
+            <Route path="view-users" element={<ViewUsers /> } />
+
           </Route>
         </Routes>
       </BrowserRouter>
