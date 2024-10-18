@@ -74,7 +74,7 @@ function AdminDashboard() {
 
         </ListGroup>
       </div>
-      <div className="col-sm-9 p-0 text-center ">
+      <div className="col-sm-9 p-0 ">
         <Outlet />
       </div>
     </div>
