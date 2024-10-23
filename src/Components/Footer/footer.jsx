@@ -37,7 +37,6 @@ function Footer(){
                             </p>
                         </div>
                     </div>
-                    <hr />
                 </div>
             </footer>
         </div>
