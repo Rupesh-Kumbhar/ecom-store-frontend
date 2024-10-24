@@ -17,6 +17,7 @@ import ViewProducts from "./Components/AdminPages/viewProducts/viewProducts";
 import ManageOrders from "./Components/AdminPages/manageOrders/manageOrders";
 import ManageCategories from "./Components/AdminPages/manageCategories/manageCategories";
 import ViewUsers from "./Components/AdminPages/viewUsers/viewUsers";
+import Cart from "./Components/Cart/cart";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/about" element={<About />} />
           <Route path="/store" element={<Store />} />
+          <Route path="/user/cart" element={<Cart />} />
 
           {/* Admin Dashboard Route, nested Admin Home */}
           <Route path="/admin-dashboard" element={<AdminDashboard />}>

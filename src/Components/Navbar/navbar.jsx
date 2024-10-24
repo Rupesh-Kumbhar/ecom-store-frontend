@@ -19,8 +19,9 @@ function NavbarHome() {
                             <Nav.Link href="/contacts">Contact</Nav.Link>
                         </Nav>
                         <Nav>
-                            <Nav.Link href="login">Login</Nav.Link>
-                            <Nav.Link eventKey={2} href="signup">
+                            <Nav.Link href="/user/cart">Cart</Nav.Link>
+                            <Nav.Link href="/login">Login</Nav.Link>
+                            <Nav.Link eventKey={2} href="/signup">
                                 SignUp
                             </Nav.Link>
                         </Nav>
