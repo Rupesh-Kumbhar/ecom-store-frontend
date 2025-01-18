@@ -29,13 +29,13 @@ function Store() {
     },
 
     {
-      image: `${process.env.PUBLIC_URL}/assets/featured-images/Microsoft Wired Ergonomic 1.jpg`,
+      image: `${process.env.PUBLIC_URL}/assets/featured-images/Microsoft-Wired-Ergonomic-1.jpg`,
       name: "Microsoft Wired Ergonomic",
       price: "10,372",
     },
 
     {
-      image: `${process.env.PUBLIC_URL}/assets/featured-images/boat rockerz.jpg`,
+      image: `${process.env.PUBLIC_URL}/assets/featured-images/boat-rockerz.jpg`,
       name: "BoAt Rockerz 450",
       price: "1,499",
     },
@@ -61,7 +61,7 @@ function Store() {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img src="assets/featured-images/Logitech G213 Prodigy 4.jpg" className="carousel-img" alt="First slide"/>
+          <img src="assets/featured-images/Logitech-G213-Prodigy-4.jpg" className="carousel-img" alt="First slide"/>
 
           <Carousel.Caption>
             <h3>Third slide label</h3>

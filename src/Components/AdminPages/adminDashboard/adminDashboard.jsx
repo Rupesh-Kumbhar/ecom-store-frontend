@@ -17,6 +17,14 @@ function AdminDashboard() {
             <h5 className="admin-nav-font"> Home</h5>
           </ListGroupItem>
 
+          <ListGroupItem className="py-3"
+              tag={Link}
+              to={"/admin-dashboard/view-products"}
+              action="true"
+            >
+              <h5 className="admin-nav-font">View Products</h5>
+            </ListGroupItem>
+
           <ListGroupItem
             className="py-3"
             tag={Link}
@@ -42,12 +50,8 @@ function AdminDashboard() {
               <h5 className="admin-nav-font">Add Category</h5>
             </ListGroupItem>
 
-            <ListGroupItem className="py-3"
-              tag={Link}
-              to={"/admin-dashboard/view-products"}
-              action="true"
-            >
-              <h5 className="admin-nav-font">View Products</h5>
+            <ListGroupItem className="py-3" tag={Link} to={"/admin-dashboard/manage-categories"} action="true">
+              <h5 className="admin-nav-font">Manage Categories</h5>
             </ListGroupItem>
 
             <ListGroupItem className="py-3"
@@ -58,10 +62,6 @@ function AdminDashboard() {
               <h5 className="admin-nav-font">Manage Orders</h5>
             </ListGroupItem>
 
-            <ListGroupItem className="py-3" tag={Link} to={"/admin-dashboard/manage-categories"} action="true">
-              <h5 className="admin-nav-font">Manage Categories</h5>
-            </ListGroupItem>
-
             <ListGroupItem className="py-3"
               tag={Link}
               to={"/admin-dashboard/view-users"}
@@ -69,9 +69,7 @@ function AdminDashboard() {
             >
               <h5 className="admin-nav-font"> View Users</h5>
             </ListGroupItem>          
-
-
-
+            
         </ListGroup>
       </div>
       <div className="col-sm-9 p-0 ">
