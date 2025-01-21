@@ -21,3 +21,12 @@ export const createCategory=(title)=>{
   }
   ).then(res=>res.data)
 }
+
+export const deleteCategory = (categoryId) => {
+  return privateHttp.delete(`/categories/delete/${categoryId}`)
+    .then(res => res.data)
+    .catch(error => {
+      // Handle error
+      throw error.response ? error.response.data : error;
+    });
+};
