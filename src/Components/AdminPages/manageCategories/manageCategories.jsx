@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Button, Table,FormGroup,Input } from "reactstrap";
-import { fetchCategories } from "../../../Services/categoryService"; 
+import { fetchCategories,deleteCategory } from "../../../Services/categoryService"; 
 import { loadSingleCategory } from "../../../Services/categoryService";
 import {CardText, CardBody,Card,Modal,ModalBody,ModalHeader,ModalFooter} from "reactstrap"
-
+import { toast } from "react-toastify";
 
 function ManageCategories(){
 
@@ -41,6 +41,28 @@ function ManageCategories(){
 
     getCategories();
   }, []);
+
+  const handleDelete = (categoryId) => {
+    if (window.confirm("Are you sure you want to delete this category?")) {
+      deleteCategory(categoryId)
+        .then(() => {
+          toast.success("Category deleted successfully!");
+          // Re-fetch the categories list after deletion
+          fetchCategories()
+            .then(data => {
+              setCategories(data);
+            })
+            .catch(error => {
+              console.error(error);
+              toast.error("Failed to refresh categories list.");
+            });
+        })
+        .catch(error => {
+          console.error(error);
+          toast.error("Failed to delete category.");
+        });
+    }
+  };
 
   if (loading) {
     return <div>Loading categories...</div>;
@@ -117,7 +139,7 @@ function ManageCategories(){
               </td>
 
               <td>
-                <Button color="danger" className="" size="sm">
+                <Button color="danger" className="" size="sm"  onClick={() => handleDelete(category.categoryId)}>
                   Delete
                 </Button>
               </td>
