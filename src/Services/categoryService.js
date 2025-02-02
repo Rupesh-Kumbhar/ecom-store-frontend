@@ -41,3 +41,13 @@ export const updateCategory = (categoryId, updatedData) => {
       throw error.response ? error.response.data : error;
     });
 };
+
+// Search category by name
+export const searchCategoryByName = (name) => {
+  return http.get(`/categories/search/${name}`)
+    .then(res => res.data)
+    .catch(error => {
+      // Handle error
+      throw error.response ? error.response.data : error;
+    });
+};
