@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Button, Table,FormGroup,Input } from "reactstrap";
-import { fetchCategories,deleteCategory,loadSingleCategory,updateCategory } from "../../../Services/categoryService";
-import { CardText, CardBody,Card,Modal,ModalBody,ModalHeader,ModalFooter} from "reactstrap";
+import { Button, Table, FormGroup, Input } from "reactstrap";
+import { fetchCategories, deleteCategory, loadSingleCategory, updateCategory, searchCategoryByName } from "../../../Services/categoryService";
+import { CardText, CardBody, Card, Modal, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
 import { toast } from "react-toastify";
 
-function ManageCategories(){
-
+function ManageCategories() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -17,6 +16,8 @@ function ManageCategories(){
     categoryId: "",
     categoryName: "",
   });
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   const toggle = () => setModal(!modal);
   const closeModal = () => setModal(false);
@@ -108,12 +109,34 @@ function ManageCategories(){
     }
   };
 
+  const handleSearch = () => {
+    if (searchTerm.trim() !== "") {
+      searchCategoryByName(searchTerm)
+        .then((data) => {
+          setCategories([data]);
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.error("Category not found.");
+        });
+    } else {
+      fetchCategories()
+        .then((data) => {
+          setCategories(data);
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.error("Failed to refresh categories list.");
+        });
+    }
+  };
+
   if (loading) {
     return <div>Loading categories...</div>;
   }
 
-  const modelHtml=()=>{
-    return(
+  const modelHtml = () => {
+    return (
       <Modal isOpen={modal} toggle={closeModal} size="lg">
         <ModalHeader toggle={closeModal}></ModalHeader>
         <ModalBody>
@@ -169,16 +192,22 @@ function ManageCategories(){
   };
 
   return (
-
     <div className="col-sm-12 p-0">
       <h1 className="text-center m-0 my-3">View All Categories</h1>
-      <div className="col-sm-11 m-auto p-0">
-
-        <FormGroup>
-          <Input className="w-50 m-auto" type="text" placeholder="Search Categories" ></Input>
+      <div className="col-sm-11 m-auto p-0 ">
+        <FormGroup className="justify-content-evenly row m-0 my-4 mb-4">
+          <Input
+            className="w-50 "
+            type="text"
+            placeholder="Search Categories"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <Button color="primary w-auto" onClick={handleSearch}>
+            Search
+          </Button>
         </FormGroup>
-
-        <Table bordered borderless responsive hover className="text-center bg-white" >
+        <Table bordered borderless responsive hover className="text-center bg-white">
           <thead>
             <tr>
               <th>Category Id</th>
@@ -188,26 +217,23 @@ function ManageCategories(){
               <th>Delete Category</th>
             </tr>
           </thead>
-
-          <tbody >
+          <tbody>
             {categories.map((category) => (
               <tr key={category.categoryId}>
-                <td>{category.categoryId} </td>
-                <td>{category.categoryName} </td>
+                <td>{category.categoryId}</td>
+                <td>{category.categoryName}</td>
                 <td>
-                  <Button color="primary" className="" size="sm" onClick={()=>openModal(category.categoryId)}>
+                  <Button color="primary" size="sm" onClick={() => openModal(category.categoryId)}>
                     View
                   </Button>
                 </td>
-
                 <td>
-                  <Button color="info" className="" size="sm" onClick={()=> openUpdateModal(category.categoryId)} >
+                  <Button color="info" size="sm" onClick={() => openUpdateModal(category.categoryId)}>
                     Update
                   </Button>
                 </td>
-
                 <td>
-                <Button color="danger" className="" size="sm"  onClick={() => handleDelete(category.categoryId)}>
+                  <Button color="danger" size="sm" onClick={() => handleDelete(category.categoryId)}>
                     Delete
                   </Button>
                 </td>
