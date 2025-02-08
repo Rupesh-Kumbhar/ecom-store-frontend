@@ -1,4 +1,4 @@
-import axiosInstance from "./axios-helper"
+import axiosInstance, { http } from "./axios-helper"
 
 export const fetchProducts = async()=>{
     try {
@@ -8,4 +8,8 @@ export const fetchProducts = async()=>{
         console.log("Error fetching Products",error)
         throw error;
     }
+}
+
+export const loadSingleProduct= (product_id)=>{
+    return http.get(`/product/view/${product_id}`).then((response)=>response.data );
 }
