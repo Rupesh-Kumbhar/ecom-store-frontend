@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {Input,FormGroup,Table, Button , Pagination, PaginationItem, PaginationLink} from "reactstrap"
+import {Input,FormGroup,Table, Button , Pagination, PaginationItem, PaginationLink, Modal,ModalHeader,ModalBody,Card,CardBody,CardText,ModalFooter} from "reactstrap"
 import "../viewProducts/viewProducts.scss"
-import { fetchProducts } from "../../../Services/productService";
+import { fetchProducts,loadSingleProduct } from "../../../Services/productService";
 
 function ViewProducts() {
 
@@ -20,6 +20,59 @@ function ViewProducts() {
       getProducts();
     }, []);
 
+  // view product modal
+  const [modal, setModal] = useState(false);
+  const [clickProduct, setClickProduct] = useState(null);
+  
+    const openModal = (clickProductId) => {
+      setModal(true);
+      loadSingleProduct(clickProductId)    // viewProductById
+        .then((data) => {
+          setClickProduct(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    const viewProductModal = () => {
+      return (
+        <Modal isOpen={modal} toggle={closeModal} size="lg" className="modal-dialog modal-dialog-centered">
+          <ModalHeader toggle={closeModal} ></ModalHeader>
+            {clickProduct && (
+          <ModalBody className="row m-0">
+            <div className="col-sm-8 ">
+              
+              <Card className="shadow-sm" color="light">
+                <CardBody>
+                  <CardText>
+                    <h5>Product Id : {clickProduct.product_id}</h5>
+                    <h5>Product Name : {clickProduct.product_name}</h5>
+                    <h5>Product Price : {clickProduct.product_price}</h5>
+                    <h5>Product Description : {clickProduct.product_desc}</h5>
+                    <h5>Product Category : {clickProduct.category?.categoryName || "No Category"}</h5>
+                  </CardText>
+                </CardBody>
+              </Card>
+
+            </div>
+            <div className="col-sm-4 product-img">
+              <img src="#" alt="product img" />
+              
+            </div>
+          </ModalBody>
+            )}
+          <ModalFooter>
+            <Button className="modal-close-btn w-25" size="sm" onClick={toggle}>
+              Close
+            </Button>
+          </ModalFooter>
+        </Modal>
+      );
+    };
+
+  const toggle = () => setModal(!modal);
+  const closeModal = () => setModal(false);
 
   return (
     <div className="col-sm-12 p-0">
@@ -37,7 +90,7 @@ function ViewProducts() {
               <th>Product Id</th>
               <th>Name</th>
               <th>Price</th>
-              <th>Category</th>
+              <th>Product Desc</th>
               <th>Quantity</th>
               <th>View Product</th>
               <th>Update Product</th>
@@ -52,20 +105,20 @@ function ViewProducts() {
               <td> {product.product_id} </td>
               <td> {product.product_name}</td>
               <td>{product.product_price}</td>
-              <td> {product.category?.categoryName || "No Category"} </td>
+              <td> {product.product_desc} </td>
               <td> {product.product_quantity}</td>
               <td>
-                <Button className="view-pro-btn" size="sm">
-                  View
+                <Button color="primary" size="sm" onClick={() => openModal(product.product_id)}> 
+                   View
                 </Button>
               </td>
               <td>
-                <Button className="update-pro-btn" size="sm">
+                <Button color="info" size="sm">
                   Update
                 </Button>
               </td>
               <td>
-                <Button className="delete-btn" size="sm">
+                <Button color="danger"  size="sm">
                   Delete
                 </Button>
               </td>
@@ -75,7 +128,7 @@ function ViewProducts() {
           </tbody>
         </Table>
 
-        <div className="col-sm-12 p-0 ">
+        <div className="col-sm-12 p-0 d-flex justify-content-end">
           <Pagination >
             <PaginationItem disabled>
               <PaginationLink previous href="#" />
@@ -92,6 +145,9 @@ function ViewProducts() {
           </Pagination>
         </div>
       </div>
+
+      {clickProduct && viewProductModal()}
+
     </div>
   );
 }
