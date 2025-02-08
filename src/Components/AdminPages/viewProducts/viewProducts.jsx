@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {Input,FormGroup,Table, Button , Pagination, PaginationItem, PaginationLink} from "reactstrap"
 import "../viewProducts/viewProducts.scss"
+import { fetchProducts } from "../../../Services/productService";
 
 function ViewProducts() {
+
+  const [products, setProducts] = useState([]);
+
+  useEffect( ()=>{
+    const getProducts = 
+      async() =>{
+        try {
+          const data = await fetchProducts();
+          setProducts(data);
+        } catch (error) {
+          console.log("Error fetching Products")          
+        }
+      };
+      getProducts();
+    }, []);
+
+
   return (
     <div className="col-sm-12 p-0">
       <div className="col-sm-11 m-auto p-0">
@@ -19,7 +37,6 @@ function ViewProducts() {
               <th>Product Id</th>
               <th>Name</th>
               <th>Price</th>
-              <th>Stock</th>
               <th>Category</th>
               <th>Quantity</th>
               <th>View Product</th>
@@ -29,15 +46,14 @@ function ViewProducts() {
           </thead>
 
           <tbody>
+            { products.map( (product)=> (
+           
             <tr>
-              <td>productId</td>
-              <td>productName</td>
-              {/* if use <td>productNamefggergeegrgergergergerg</td> Here handle length in CSS , 
-                    if it increasing in length...its affecting the width of other column */}
-              <td>productPrice</td>
-              <td>stock </td>
-              <td>category title</td>
-              <td>productQuantity</td>
+              <td> {product.product_id} </td>
+              <td> {product.product_name}</td>
+              <td>{product.product_price}</td>
+              <td> {product.category?.categoryName || "No Category"} </td>
+              <td> {product.product_quantity}</td>
               <td>
                 <Button className="view-pro-btn" size="sm">
                   View
@@ -54,6 +70,8 @@ function ViewProducts() {
                 </Button>
               </td>
             </tr>
+             )
+            ) }
           </tbody>
         </Table>
 
