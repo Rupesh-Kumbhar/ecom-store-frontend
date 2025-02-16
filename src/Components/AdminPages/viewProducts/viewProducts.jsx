@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {Input,FormGroup,Table, Button , Pagination, PaginationItem, PaginationLink, Modal,ModalHeader,ModalBody,Card,CardBody,CardText,ModalFooter} from "reactstrap"
 import "../viewProducts/viewProducts.scss"
-import { fetchProducts,loadSingleProduct,updateProduct } from "../../../Services/productService";
+import { fetchProducts,loadSingleProduct,updateProduct,deleteProduct } from "../../../Services/productService";
 import { toast } from "react-toastify";
 
 function ViewProducts() {
@@ -215,7 +215,29 @@ function ViewProducts() {
           toast.error("Failed to update product.");
         });
     };
-    
+  
+  // delete product
+  const handleDelete = (product_id)=>{
+    if (window.confirm("Are you sure you want to delete this Product?")) {
+          deleteProduct(product_id)
+            .then(() => {
+              toast.success("Product deleted successfully!");
+              fetchProducts()
+                .then((data) => {
+                  setProducts(data);
+                })
+                .catch((error) => {
+                  console.error(error);
+                  toast.error("Failed to refresh categories list.");
+                });
+            })
+            .catch((error) => {
+              console.error(error);
+              toast.error("Failed to delete category.");
+            });
+        }
+  };
+
   return (
     <div className="col-sm-12 p-0">
       <div className="col-sm-11 m-auto p-0">
@@ -260,7 +282,7 @@ function ViewProducts() {
                 </Button>
               </td>
               <td>
-                <Button color="danger"  size="sm">
+                <Button color="danger"  size="sm" onClick={()=>handleDelete(product.product_id)} >
                   Delete
                 </Button>
               </td>

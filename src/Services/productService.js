@@ -21,3 +21,11 @@ export const updateProduct =(product_id,updatedData)=>{
         throw error.response ? error.response.data : error;
     });
 };
+
+export const deleteProduct=(product_id)=>{
+    return privateHttp.delete(`/product/delete/${product_id}`)
+    .then(res=>res.data)
+    .catch(error => {
+        throw error.response ? error.response.data : error;
+    });
+};
