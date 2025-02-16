@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {Input,FormGroup,Table, Button , Pagination, PaginationItem, PaginationLink, Modal,ModalHeader,ModalBody,Card,CardBody,CardText,ModalFooter} from "reactstrap"
 import "../viewProducts/viewProducts.scss"
-import { fetchProducts,loadSingleProduct } from "../../../Services/productService";
+import { fetchProducts,loadSingleProduct,updateProduct } from "../../../Services/productService";
+import { toast } from "react-toastify";
 
 function ViewProducts() {
 
@@ -74,6 +75,147 @@ function ViewProducts() {
   const toggle = () => setModal(!modal);
   const closeModal = () => setModal(false);
 
+  // Update Product modal
+  const[updateModal, setUpdateModal] = useState(false);
+  const [updatedProduct, setUpdatedProduct] = useState({
+    // product_id:"",
+    product_name : "",
+    product_desc: "",
+    product_price: "",
+    product_quantity: ""
+  });
+
+  const openUpdateModal = (product_id)=>{
+    setUpdateModal(true);
+    loadSingleProduct(product_id)
+    .then((data)=>{
+
+      setUpdatedProduct({
+        product_id: data.product_id || "",  
+        product_name: data.product_name || "", 
+        product_desc: data.product_desc || "",  
+        product_price: data.product_price || 0.0,  
+        product_quantity: data.product_quantity || 0,  
+        product_imageName: data.product_imageName || "", 
+        category: data.category || {}, 
+      });
+      setUpdateModal(true); 
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+  }
+
+  const closeUpdateModal = ()=>{
+    setUpdateModal(false);
+  }
+
+    const updateProductModal = () => {
+      return (
+        <Modal isOpen={updateModal} toggle={closeUpdateModal} size="lg">
+          <ModalHeader toggle={closeUpdateModal}>Update Product</ModalHeader>
+          <ModalBody>
+            <FormGroup>
+              <label>Product Name</label>
+              <Input
+                type="text"
+                value={updatedProduct.product_name || ""}
+                onChange={(e) =>
+                  setUpdatedProduct({
+                    ...updatedProduct,
+                    product_name: e.target.value,
+                  })
+                }
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label>Product Description</label>
+              <Input
+                type="text"
+                value={updatedProduct.product_desc || ""}
+                onChange={(e) =>
+                  setUpdatedProduct({
+                    ...updatedProduct,
+                    product_desc: e.target.value,
+                  })
+                }
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label>Product Price</label>
+              <Input
+                type="number"
+                value={updatedProduct.product_price || 0.0}
+                onChange={(e) =>
+                  setUpdatedProduct({
+                    ...updatedProduct,
+                    product_price: parseFloat(e.target.value) || 0,
+                  })
+                }
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label>Product Quantity</label>
+              <Input
+                type="number"
+                value={updatedProduct.product_quantity || 0}
+                onChange={(e) =>
+                  setUpdatedProduct({
+                    ...updatedProduct,
+                    product_quantity: parseInt(e.target.value, 10) || 0,
+                  })
+                }
+              />
+            </FormGroup>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={handleUpdate}>
+              Save Changes
+            </Button>
+            <Button color="secondary" onClick={closeUpdateModal}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
+      );
+    };
+    
+    const handleUpdate = () => {
+      if (!updatedProduct.product_id) {
+        console.error("Product ID is missing.");
+        toast.error("Product ID is missing.");
+        return;
+      }
+    
+      console.log("Updating product with ID:", updatedProduct.product_id);
+    
+      updateProduct(updatedProduct.product_id, {
+        product_name: updatedProduct.product_name,
+        product_desc: updatedProduct.product_desc, 
+        product_price: updatedProduct.product_price, 
+        product_quantity: updatedProduct.product_quantity, 
+      })
+        .then(() => {
+          toast.success("Product updated successfully!");
+          closeUpdateModal();
+          fetchProducts()
+            .then((data) => {
+              setProducts(data);
+            })
+            .catch((error) => {
+              console.error(error);
+              toast.error("Failed to refresh product list.");
+            });
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.error("Failed to update product.");
+        });
+    };
+    
   return (
     <div className="col-sm-12 p-0">
       <div className="col-sm-11 m-auto p-0">
@@ -113,7 +255,7 @@ function ViewProducts() {
                 </Button>
               </td>
               <td>
-                <Button color="info" size="sm">
+                <Button color="info" size="sm" onClick={() => openUpdateModal(product.product_id)}>
                   Update
                 </Button>
               </td>
@@ -147,6 +289,7 @@ function ViewProducts() {
       </div>
 
       {clickProduct && viewProductModal()}
+      {updateModal && updateProductModal()}
 
     </div>
   );

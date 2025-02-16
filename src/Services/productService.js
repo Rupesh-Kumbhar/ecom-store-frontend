@@ -1,4 +1,4 @@
-import axiosInstance, { http } from "./axios-helper"
+import axiosInstance, { http,privateHttp } from "./axios-helper"
 
 export const fetchProducts = async()=>{
     try {
@@ -13,3 +13,11 @@ export const fetchProducts = async()=>{
 export const loadSingleProduct= (product_id)=>{
     return http.get(`/product/view/${product_id}`).then((response)=>response.data );
 }
+
+export const updateProduct =(product_id,updatedData)=>{
+    return privateHttp.put(`/product/update/${product_id}`,updatedData)
+    .then(res=>res.data)
+    .catch(error=>{
+        throw error.response ? error.response.data : error;
+    });
+};
