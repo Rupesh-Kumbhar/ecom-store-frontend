@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "../addCategory/addCategory.scss"
-import { Container,Card, CardBody, CardText,Input, Button} from "reactstrap";
+import { Container,Card, CardBody, CardText,Input, Button,} from "reactstrap";
 import { createCategory } from "../../../Services/categoryService";
 import { toast } from "react-toastify";
 
