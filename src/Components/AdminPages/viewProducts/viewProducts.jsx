@@ -7,6 +7,9 @@ import { toast } from "react-toastify";
 function ViewProducts() {
 
   const [products, setProducts] = useState([]);
+   // pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const rowsPerPage = 7;
 
   useEffect( ()=>{
     const getProducts = 
@@ -228,15 +231,29 @@ function ViewProducts() {
                 })
                 .catch((error) => {
                   console.error(error);
-                  toast.error("Failed to refresh categories list.");
+                  toast.error("Failed to refresh products list.");
                 });
             })
             .catch((error) => {
               console.error(error);
-              toast.error("Failed to delete category.");
+              toast.error("Failed to delete product.");
             });
         }
   };
+
+
+    // Calculate total pages
+    const totalPages = Math.ceil(products.length / rowsPerPage);
+
+    // Get current page's products
+    const indexOfLastRow = currentPage * rowsPerPage;
+    const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+    const currentProducts = products.slice(indexOfFirstRow, indexOfLastRow);
+  
+    // Page change handler
+    const handlePageChange = (page) => {
+      setCurrentPage(page);
+    };
 
   return (
     <div className="col-sm-12 p-0">
@@ -263,7 +280,7 @@ function ViewProducts() {
           </thead>
 
           <tbody>
-            { products.map( (product)=> (
+            { currentProducts.map( (product)=> (
            
             <tr>
               <td> {product.product_id} </td>
@@ -293,21 +310,35 @@ function ViewProducts() {
         </Table>
 
         <div className="col-sm-12 p-0 d-flex justify-content-end">
-          <Pagination >
-            <PaginationItem disabled>
-              <PaginationLink previous href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">2</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink next href="#" />
-            </PaginationItem>
-          </Pagination>
-        </div>
+                <Pagination>
+                  <PaginationItem disabled={currentPage === 1}> 
+                    <PaginationLink
+                      previous
+                      href="#"
+                      onClick={() => handlePageChange(currentPage - 1)}
+                    />
+                  </PaginationItem>
+      
+                  {[...Array(totalPages)].map((_, index) => (
+                    <PaginationItem active={currentPage === index + 1} key={index}>
+                      <PaginationLink
+                        href="#"
+                        onClick={() => handlePageChange(index + 1)}
+                      >
+                        {index + 1}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+      
+                  <PaginationItem disabled={currentPage === totalPages}>
+                    <PaginationLink
+                      next
+                      href="#"
+                      onClick={() => handlePageChange(currentPage + 1)}
+                    />
+                  </PaginationItem>
+                </Pagination>
+              </div>
       </div>
 
       {clickProduct && viewProductModal()}
