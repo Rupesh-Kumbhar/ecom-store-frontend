@@ -1,6 +1,7 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import "../Store/store.scss";
 import Carousel from "react-bootstrap/Carousel";
+import { fetchCategories } from "../../Services/categoryService";
 
 function Store() {
   const latestProducts = [
@@ -41,6 +42,16 @@ function Store() {
     },
   ];
   
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetchCategories().then((data) => {
+      setCategories(data);
+    }).catch(error => {
+      console.error("Error fetching categories:", error);
+    });
+  }, []);
+  
   return (
     <div className="col-sm-12 p-0">
       <Carousel>
@@ -77,14 +88,10 @@ function Store() {
               <button type="button"className="list-group-item list-group-item-action active text-center p-3 category-font">Categories</button>
 
               <button type="button" className="list-group-item list-group-item-action text-center p-3 category-font">All</button>
+            { categories.map( (category)=>(
 
-              <button type="button" className="list-group-item list-group-item-action text-center p-3 category-font">Laptops</button>
-
-              <button type="button" className="list-group-item list-group-item-action text-center p-3 category-font" >Mouse</button>
-
-              <button type="button" className="list-group-item list-group-item-action text-center p-3 category-font" > Headphones </button>
-
-              <button type="button" className="list-group-item list-group-item-action text-center p-3 category-font" > Gaming Desktops </button> 
+              <button type="button" className="list-group-item list-group-item-action text-center p-3 category-font" key={category.categoryId} > {category.categoryName} </button> 
+            ))}
               </div>
           </div>
           <div className="col-sm-8 p-0">

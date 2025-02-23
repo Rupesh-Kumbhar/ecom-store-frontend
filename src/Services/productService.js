@@ -29,3 +29,12 @@ export const deleteProduct=(product_id)=>{
         throw error.response ? error.response.data : error;
     });
 };
+
+
+export const createProduct = (categoryId, productData) => {
+  return privateHttp.post(`/product/create/${categoryId}`, productData)
+    .then((res) => res.data)
+    .catch((error) => {
+      throw error.response ? error.response.data : error;
+    });
+};
