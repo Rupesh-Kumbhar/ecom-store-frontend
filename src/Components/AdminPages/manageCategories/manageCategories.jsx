@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Button, Table, FormGroup, Input } from "reactstrap";
+import { Button, Table, FormGroup, Input,Pagination,PaginationItem,PaginationLink } from "reactstrap";
 import { fetchCategories, deleteCategory, loadSingleCategory, updateCategory, searchCategoryByName } from "../../../Services/categoryService";
 import { CardText, CardBody, Card, Modal, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
 import { toast } from "react-toastify";
 
 function ManageCategories() {
+    // pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const rowsPerPage = 7;
+
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -191,6 +195,20 @@ function ManageCategories() {
     );
   };
 
+
+
+  // Calculate total pages
+  const totalPages = Math.ceil(categories.length / rowsPerPage);
+
+  // Get current page's categories
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentCategories = categories.slice(indexOfFirstRow, indexOfLastRow);
+
+  // Page change handler
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
   return (
     <div className="col-sm-12 p-0">
       <h1 className="text-center m-0 my-3">View All Categories</h1>
@@ -207,7 +225,13 @@ function ManageCategories() {
             Search
           </Button>
         </FormGroup>
-        <Table bordered borderless responsive hover className="text-center bg-white">
+        <Table
+          bordered
+          borderless
+          responsive
+          hover
+          className="text-center bg-white"
+        >
           <thead>
             <tr>
               <th>Category Id</th>
@@ -218,22 +242,34 @@ function ManageCategories() {
             </tr>
           </thead>
           <tbody>
-            {categories.map((category) => (
+            {currentCategories.map((category) => (
               <tr key={category.categoryId}>
                 <td>{category.categoryId}</td>
                 <td>{category.categoryName}</td>
                 <td>
-                  <Button color="primary" size="sm" onClick={() => openModal(category.categoryId)}>
+                  <Button
+                    color="primary"
+                    size="sm"
+                    onClick={() => openModal(category.categoryId)}
+                  >
                     View
                   </Button>
                 </td>
                 <td>
-                  <Button color="info" size="sm" onClick={() => openUpdateModal(category.categoryId)}>
+                  <Button
+                    color="info"
+                    size="sm"
+                    onClick={() => openUpdateModal(category.categoryId)}
+                  >
                     Update
                   </Button>
                 </td>
                 <td>
-                  <Button color="danger" size="sm" onClick={() => handleDelete(category.categoryId)}>
+                  <Button
+                    color="danger"
+                    size="sm"
+                    onClick={() => handleDelete(category.categoryId)}
+                  >
                     Delete
                   </Button>
                 </td>
@@ -241,6 +277,37 @@ function ManageCategories() {
             ))}
           </tbody>
         </Table>
+
+        <div className="col-sm-12 p-0 d-flex justify-content-end">
+          <Pagination>
+            <PaginationItem disabled={currentPage === 1}>
+              <PaginationLink
+                previous
+                href="#"
+                onClick={() => handlePageChange(currentPage - 1)}
+              />
+            </PaginationItem>
+
+            {[...Array(totalPages)].map((_, index) => (
+              <PaginationItem active={currentPage === index + 1} key={index}>
+                <PaginationLink
+                  href="#"
+                  onClick={() => handlePageChange(index + 1)}
+                >
+                  {index + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+
+            <PaginationItem disabled={currentPage === totalPages}>
+              <PaginationLink
+                next
+                href="#"
+                onClick={() => handlePageChange(currentPage + 1)}
+              />
+            </PaginationItem>
+          </Pagination>
+        </div>
       </div>
 
       {clickCategory && modelHtml()}
