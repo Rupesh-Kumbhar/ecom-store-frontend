@@ -18,6 +18,7 @@ import ManageOrders from "./Components/AdminPages/manageOrders/manageOrders";
 import ManageCategories from "./Components/AdminPages/manageCategories/manageCategories";
 import ViewUsers from "./Components/AdminPages/viewUsers/viewUsers";
 import Cart from "./Components/Cart/cart";
+import NotFound from "./Components/NotFound/notFound";
 
 function App() {
   return (
@@ -64,6 +65,8 @@ function App() {
             <Route path="view-users" element={<ViewUsers /> } />
 
           </Route>
+          {/* Catch all unmatched routes */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
 
