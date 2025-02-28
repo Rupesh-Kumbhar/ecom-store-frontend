@@ -62,7 +62,7 @@ function Home() {
         <div className="col-sm-5 p-0">
           <div>
             <img
-              src="assets/Home-images/home-img.png"
+              src="assets/Home-images/home-img.svg"
               alt="Description of the image"
               className="home-img"
             />
