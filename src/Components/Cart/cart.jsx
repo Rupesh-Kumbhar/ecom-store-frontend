@@ -11,7 +11,7 @@ function Cart(){
         <div className="col-sm-12 p-0 px-3">
           <div className="col-sm-10 card m-auto shadow p-4 " >
             <img
-              src="/assets/featured-images/Logitech G502 4.jpg"
+              src="/assets/featured-images/Logitech_G502_4.jpg"
               className="cart-product-img"
               alt="..."
             />
@@ -37,12 +37,12 @@ function Cart(){
 
             <div>
               <Button color="success" size="sm" className="my-3 ">
-                Increase Quantity
+                increaseQuantity
               </Button>
               <Button color="primary" size="sm" className="my-3 ms-3">
-                Decrease Quantity
+                decreaseQuantity
               </Button>
-              <Button color="danger" size="sm" className="my-3 ms-3">Remove Item</Button>
+              <Button color="danger" size="sm" className="my-3 ms-3">removeItem</Button>
             </div>
 
             <div className="text-center my-3">
