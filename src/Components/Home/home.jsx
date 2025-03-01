@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import Footer from "../Footer/footer";
 import "./../Home/home.scss";
 
 function Home() {
+  // const [interval, setInterval] = useState(1000);
   const latestProducts = [
     {
       image: `${process.env.PUBLIC_URL}/assets/featured-images/7.jpg`,
@@ -11,13 +12,13 @@ function Home() {
     },
 
     {
-      image: `${process.env.PUBLIC_URL}/assets/featured-images/8.jpg`,
+      image: `${process.env.PUBLIC_URL}/assets/featured-images/i_clever.jpg`,
       name: "iClever BTH15",
       price: "2,599",
     },
 
     {
-      image: `${process.env.PUBLIC_URL}/assets/featured-images/9.jpg`,
+      image: `${process.env.PUBLIC_URL}/assets/featured-images/Redragon_M686_2.jpg`,
       name: "Redragon M686",
       price: "3,190",
     },
@@ -29,13 +30,13 @@ function Home() {
     },
 
     {
-      image: `${process.env.PUBLIC_URL}/assets/featured-images/Microsoft Wired Ergonomic 1.jpg`,
+      image: `${process.env.PUBLIC_URL}/assets/featured-images/Microsoft-Wired-Ergonomic-1.jpg`,
       name: "Microsoft Wired Ergonomic",
       price: "10,372",
     },
 
     {
-      image: `${process.env.PUBLIC_URL}/assets/featured-images/boat rockerz.jpg`,
+      image: `${process.env.PUBLIC_URL}/assets/featured-images/boat-rockerz.jpg`,
       name: "BoAt Rockerz 450",
       price: "1,499",
     },
@@ -80,6 +81,7 @@ function Home() {
           className="carousel slide pb-5"
           data-bs-ride="carousel"
         >
+           {/* data-interval={interval} */}
           <div className="carousel-indicators">
             <button
               type="button"
@@ -116,7 +118,7 @@ function Home() {
                 </div>
                 <div className="carousel-w-25">
                   <img
-                    src="assets/featured-images/hammer bash.jpg"
+                    src="assets/featured-images/hammer_bash.jpg"
                     className="d-block w-100 carousel-products"
                     alt="..."
                   />
@@ -125,7 +127,7 @@ function Home() {
                 </div>
                 <div className="carousel-w-25">
                   <img
-                    src="assets/featured-images/Logitech K380 4.jpg"
+                    src="assets/featured-images/Logitech_K380_4.jpg"
                     className="d-block w-100 carousel-products"
                     alt="..."
                   />
@@ -134,7 +136,7 @@ function Home() {
                 </div>
                 <div className="carousel-w-25">
                   <img
-                    src="assets/featured-images/Logitech G502 4.jpg"
+                    src="assets/featured-images/Logitech_G502_4.jpg"
                     className="d-block w-100 carousel-products"
                     alt="..."
                   />
@@ -156,7 +158,7 @@ function Home() {
                 </div>
                 <div className="carousel-w-25">
                   <img
-                    src="assets/featured-images/Logitech G213 Prodigy 4.jpg"
+                    src="assets/featured-images/Logitech-G213-Prodigy-4.jpg"
                     className="d-block w-100 carousel-products"
                     alt="..."
                   />
@@ -187,7 +189,7 @@ function Home() {
               <div className="col-sm-10 mx-auto row p-0 mb-d-flex">
                 <div className="carousel-w-25">
                   <img
-                    src="assets/featured-images/HP 150 1.jpg"
+                    src="assets/featured-images/HP_150_1.jpg"
                     className="d-block w-100 carousel-products"
                     alt="..."
                   />
