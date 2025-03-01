@@ -28,8 +28,8 @@ function SignUp(){
                             </div>
 
                             <div className='my-3 input-container'>
-                                <Label for="password">Passwoard</Label>
-                                <Input type="password" id="passwoard" placeholder='Enter Your Passwoard Here'
+                                <Label for="password">Password</Label>
+                                <Input type="password" id="password" placeholder='Enter Your Password Here'
                                 />
                             </div>
 
