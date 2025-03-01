@@ -5,21 +5,25 @@ function About(){
     return(
         <div className="col-sm-9 mt-5 container">
 
-            <h1 className="text-center pt-5 heading-text" >Welcome to Our Ecommerce App for Laptop and Accessories </h1>
+            <h1 className="heading-text" >About Us : Your Ultimate Destination for Laptops & Accessories</h1>
             <div className="text-center pb-5 mb-5">
+                
+                <div className="col-sm-12 p-0">
+                    <img src="assets/Home-images/about-us.png" alt="home" className="about-img" />
+                </div>
+
                 <h4 className="text-center pt-5 body-text" >
                     Welcome !
+                    Explore a wide range of laptops from top brands like Apple, Dell, HP, and Lenovo, along with essential accessories designed to complement your computing needs. Whether you're a professional, student, or gamer, we have the perfect tech solutions for you.
 
-                    Our goal is to provide you with a seamless shopping experience, whether you're looking for the latest laptops or high-quality accessories. We offer a wide selection of laptops from top brands such as Apple, Dell, HP, and Lenovo, as well as a variety of accessories to enhance your computing experience.
                 </h4>
-                <h4 className="text-center pb-5 body-text mt-5">
-                    At our Ecommerce App, we understand that technology is constantly evolving, and we're dedicated to keeping up with the latest trends and innovations.
-                    Thank you for choosing our Ecommerce App for Laptop and Accessories. We're excited to help you find the perfect products to meet your needs, and we're committed to providing you with the best possible shopping experience. If you have any questions or feedback, please don't hesitate to reach out to us.
+                <h4 className="text-center pb-3 body-text mt-5">
+                At our Ecommerce App, we stay ahead of the curve, keeping up with the latest innovations and trends in technology. Our goal is to bring you cutting-edge products, competitive prices, and a hassle-free shopping experience, All in one place !!
                 </h4>
-                {/* In addition to our product offerings, we also provide a range of services to help you get the most out of your tech. Whether you need help with setup and installation, troubleshooting, or repair, our team of experts is here to help.
-                            Our team of tech experts is always on the lookout for new products and features to improve your computing experience, and we're committed to providing you with the best possible service and support. */}
-
-                <img src="assets/Home-images/about-us.png" alt="Description of the image" className="about-img" />
+                <h4 className="text-center pb-5 body-text">
+                    Thank you for choosing us ! If you have any questions or feedback, feel free to reach out, We'd love to hear from you !
+                </h4>
+                
 
             </div>
 

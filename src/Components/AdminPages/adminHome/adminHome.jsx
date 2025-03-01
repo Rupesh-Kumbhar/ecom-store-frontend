@@ -21,7 +21,7 @@ function AdminHome(){
     
             <div className="col-sm-6 p-0 admin-img-container">
                 <img src="/assets/admin-images/admin_Home.png"
-                    alt="Description of the image"
+                    alt="admin_Home"
                     className="admin-img"
                 />
             </div>
