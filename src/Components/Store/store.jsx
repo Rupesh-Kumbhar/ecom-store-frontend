@@ -19,8 +19,8 @@ function Store() {
 
     {
       image: `${process.env.PUBLIC_URL}/assets/featured-images/9.jpg`,
-      name: "Redragon M686",
-      price: "3,190",
+      name: "ZEBRONICS Gaming AC32FHD",
+      price: "16,999",
     },
 
     {
@@ -56,7 +56,7 @@ function Store() {
     <div className="col-sm-12 p-0">
       <Carousel>
         <Carousel.Item>
-          <img src="assets/featured-images/laptop-9.jpg" className="carousel-img" alt="First slide"/>
+          <img src="assets/featured-images/oneodio.jpg" className="carousel-img" alt="First slide"/>
 
           <Carousel.Caption>
             <h3>First slide label</h3>
@@ -64,7 +64,7 @@ function Store() {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img src="assets/featured-images/oneodio.jpg" className="carousel-img" alt="Second slide" />
+          <img src="assets/featured-images/laptop-9.jpg" className="carousel-img" alt="Second slide" />
 
           <Carousel.Caption>
             <h3>Second slide label</h3>
