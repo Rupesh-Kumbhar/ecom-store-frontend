@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Footer from "../Footer/footer";
 import "./../Home/home.scss";
 
@@ -64,7 +64,7 @@ function Home() {
           <div>
             <img
               src="assets/Home-images/home-img.svg"
-              alt="Description of the image"
+              alt="home"
               className="home-img"
             />
           </div>

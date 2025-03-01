@@ -23,18 +23,19 @@ function Footer(){
                         <div className="col-md-4 mb-5">
                             <h3 className="mb-4">Follow Us</h3>
                             <p>
-                                <a href="#">Facebook</a>
+                                <a  href='https://www.facebook.com/rupesh.kumbhar.58173' target='_blank' rel="noopener noreferrer" >Facebook</a>
+                            </p>
+                            
+                            <p>
+                                <a  href='https://www.instagram.com/rupesh_kumbhar_/?igshid=ZDdkNTZiNTM%3D' target='_blank' rel="noopener noreferrer">Instagram</a>
+                            </p>
+                            <p>
+                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"> Twitter </a>
+                            </p>
+                            <p>
+                                <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer"> YouTube </a>
                             </p>
 
-                            <p>
-                                <a href="#">Twitter</a>
-                            </p>
-                            <p>
-                                <a href="#">Instagram</a>
-                            </p>
-                            <p>
-                                <a href="#">Youtube</a>
-                            </p>
                         </div>
                     </div>
                 </div>
