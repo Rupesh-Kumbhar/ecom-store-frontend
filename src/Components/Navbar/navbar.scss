@@ -1,3 +1,14 @@
 .nav-link:focus, .nav-link:active {
     color: #fb2e86
 }
+
+.container {
+    text-align: center;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+}
+///////////to add scss to active element : some border/////////////////////
