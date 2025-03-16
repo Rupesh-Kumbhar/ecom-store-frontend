@@ -2,13 +2,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 90vh;
 }
 
 .signUp-card {
-    border-radius: 30px;
+    // border-radius: 30px;
     border: 0;
-    padding: 2%;
+    // padding: 2%;
+    height: 75vh;
+    overflow-y: auto;
+    border-radius: 1vh;
 }
 
 .signUp-btn {

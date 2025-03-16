@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 function SignUp(){
     return (
         <div className="col-sm-12 signUp-form-ht" >
+            {/* col-9 for laptop screen and col-sm-6 ( less than < 576px)for smaller screen, replicate whereever neccessary */}
+            <div className="col-9 col-sm-6 mx-auto shadow-lg signUp-card">
+                <div className="card" >
 
-            <div className="col-sm-5 mx-auto">
-                <div className="card shadow-lg signUp-card" >
-
-                    <div className="card-body">
+                    <div className="card-body p-4">
                         {/* {JSON.stringify(loginData)} */}
                         <h3 className='text-center '>Sign Up</h3>
                         <Form >

@@ -8,8 +8,8 @@ function Login(){
     return (
         <div className="col-sm-12 login-form-ht" >
 
-            <div className="col-sm-5 mx-auto">
-                <div className="card shadow-lg login-card" >
+            <div className="col-10 col-sm-6 mx-auto">
+                <div className="card shadow-lg p-3" >
 
                     <div className="card-body">
                         {/* {JSON.stringify(loginData)} */}
