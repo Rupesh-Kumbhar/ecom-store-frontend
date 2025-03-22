@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Button, Table, FormGroup, Input,Pagination,PaginationItem,PaginationLink } from "reactstrap";
+import { Table, FormGroup, Input,Pagination,PaginationItem,PaginationLink } from "reactstrap";
 import { fetchCategories, deleteCategory, loadSingleCategory, updateCategory, searchCategoryByName } from "../../../Services/categoryService";
-import { CardText, CardBody, Card, Modal, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
+import { CardText, CardBody, Modal, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
 import { toast } from "react-toastify";
+import { Card, Button } from "react-bootstrap";
+import "../manageCategories/manageCategories.scss"
 
 function ManageCategories() {
     // pagination
@@ -221,7 +223,7 @@ function ManageCategories() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <Button color="primary w-auto" onClick={handleSearch}>
+          <Button color="primary " className="w-auto" onClick={handleSearch}>
             Search
           </Button>
         </FormGroup>
@@ -230,7 +232,7 @@ function ManageCategories() {
           borderless
           responsive
           hover
-          className="text-center bg-white"
+          className="text-center bg-white hide-table-in-mobile"
         >
           <thead>
             <tr>
@@ -248,7 +250,7 @@ function ManageCategories() {
                 <td>{category.categoryName}</td>
                 <td>
                   <Button
-                    color="primary"
+                    variant="info" 
                     size="sm"
                     onClick={() => openModal(category.categoryId)}
                   >
@@ -257,7 +259,7 @@ function ManageCategories() {
                 </td>
                 <td>
                   <Button
-                    color="info"
+                    variant="warning"
                     size="sm"
                     onClick={() => openUpdateModal(category.categoryId)}
                   >
@@ -266,7 +268,7 @@ function ManageCategories() {
                 </td>
                 <td>
                   <Button
-                    color="danger"
+                    variant="danger"
                     size="sm"
                     onClick={() => handleDelete(category.categoryId)}
                   >
@@ -277,6 +279,32 @@ function ManageCategories() {
             ))}
           </tbody>
         </Table>
+
+        {/* mobile and tablet card */}
+        <div className="col-sm-12 hide-cards-in-laptop">
+          <div className="p-0 row justify-content-around m-0">
+        {currentCategories.map((category) => (
+
+            <Card key={category.id} className="category-card text-center shadow-sm mb-3">
+              <Card.Body>
+                <Card.Title >Name : {category.categoryName}</Card.Title>
+                <Card.Text>Category ID: {category.categoryId}</Card.Text>
+                <div className="d-flex justify-content-center gap-2">
+                  <Button variant="info" size="sm" onClick={() => openModal(category.categoryId)}>
+                    View
+                  </Button>
+                  <Button variant="warning" size="sm" onClick={() => openUpdateModal(category.categoryId)}>
+                    Update
+                  </Button>
+                  <Button variant="danger" size="sm" onClick={() => handleDelete(category.categoryId)}>
+                    Delete
+                  </Button>
+                </div>
+              </Card.Body>
+            </Card>
+      ))}
+          </div>
+    </div>
 
         <div className="col-sm-12 p-0 d-flex justify-content-end">
           <Pagination>
