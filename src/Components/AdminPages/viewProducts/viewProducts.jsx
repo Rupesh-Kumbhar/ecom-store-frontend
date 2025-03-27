@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {Input,FormGroup,Table, Button , Pagination, PaginationItem, PaginationLink, Modal,ModalHeader,ModalBody,Card,CardBody,CardText,ModalFooter} from "reactstrap"
+import {Input,FormGroup,Table , Pagination, PaginationItem, PaginationLink, Modal,ModalHeader,ModalBody,CardBody,CardText,ModalFooter} from "reactstrap"
 import "../viewProducts/viewProducts.scss"
 import { fetchProducts,loadSingleProduct,updateProduct,deleteProduct } from "../../../Services/productService";
 import { toast } from "react-toastify";
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 function ViewProducts() {
 
@@ -258,14 +260,17 @@ function ViewProducts() {
   return (
     <div className="col-sm-12 p-0">
       <div className="col-sm-11 m-auto p-0">
-        
         <h1 className="text-center m-0 my-3">View All Products</h1>
 
         <FormGroup>
-          <Input className="w-50 m-auto" type="text" placeholder="Search Product" ></Input>
+          <Input
+            className="w-50 m-auto"
+            type="text"
+            placeholder="Search Product"
+          ></Input>
         </FormGroup>
 
-        <Table bordered responsive hover className={"bg-white text-center"}>
+        <Table bordered responsive hover className={"bg-white text-center d-none d-lg-block"}>
           <thead>
             <tr>
               <th>Product Id</th>
@@ -280,65 +285,106 @@ function ViewProducts() {
           </thead>
 
           <tbody>
-            { currentProducts.map( (product)=> (
-           
-            <tr>
-              <td> {product.product_id} </td>
-              <td> {product.product_name}</td>
-              <td>{product.product_price}</td>
-              <td> {product.product_desc} </td>
-              <td> {product.product_quantity}</td>
-              <td>
-                <Button color="primary" size="sm" onClick={() => openModal(product.product_id)}> 
-                   View
-                </Button>
-              </td>
-              <td>
-                <Button color="info" size="sm" onClick={() => openUpdateModal(product.product_id)}>
-                  Update
-                </Button>
-              </td>
-              <td>
-                <Button color="danger"  size="sm" onClick={()=>handleDelete(product.product_id)} >
-                  Delete
-                </Button>
-              </td>
-            </tr>
-             )
-            ) }
+            { currentProducts.map( (product) => (
+              <tr>
+                <td> {product.product_id} </td>
+                <td> {product.product_name}</td>
+                <td>{product.product_price}</td>
+                <td> {product.product_desc} </td>
+                <td> {product.product_quantity}</td>
+                <td>
+                  <Button variant="primary" size="sm" onClick={() => openModal(product.product_id)}>
+                    View
+                  </Button>
+                </td>
+                <td>
+                  <Button variant="info" size="sm" onClick={() => openUpdateModal(product.product_id)}>
+                    Update
+                  </Button>
+                </td>
+                <td>
+                  <Button variant="danger" size="sm" onClick={() => handleDelete(product.product_id)} >
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </Table>
 
+        {/* For mobile screen */}
+        <div className="d-flex flex-wrap justify-content-around d-block d-lg-none">
+          {products.map((product) => (
+            <Card
+              key={product.product_id}
+              className="shadow-sm mb-3 product-card-width"
+              
+            >
+              <Card.Body>
+                <Card.Title>{product.product_name}</Card.Title>
+                <Card.Text>
+                  <strong>Price:</strong> ${product.product_price} <br />
+                  <strong>Description:</strong> {product.product_desc} <br />
+                  <strong>Quantity:</strong> {product.product_quantity}
+                </Card.Text>
+                <div className="d-flex justify-content-between">
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    onClick={() => openModal(product.product_id)}
+                  >
+                    View
+                  </Button>
+                  <Button
+                    variant="info"
+                    size="sm"
+                    onClick={() => openUpdateModal(product.product_id)}
+                  >
+                    Update
+                  </Button>
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => handleDelete(product.product_id)}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
+
         <div className="col-sm-12 p-0 d-flex justify-content-end">
-                <Pagination>
-                  <PaginationItem disabled={currentPage === 1}> 
-                    <PaginationLink
-                      previous
-                      href="#"
-                      onClick={() => handlePageChange(currentPage - 1)}
-                    />
-                  </PaginationItem>
-      
-                  {[...Array(totalPages)].map((_, index) => (
-                    <PaginationItem active={currentPage === index + 1} key={index}>
-                      <PaginationLink
-                        href="#"
-                        onClick={() => handlePageChange(index + 1)}
-                      >
-                        {index + 1}
-                      </PaginationLink>
-                    </PaginationItem>
-                  ))}
-      
-                  <PaginationItem disabled={currentPage === totalPages}>
-                    <PaginationLink
-                      next
-                      href="#"
-                      onClick={() => handlePageChange(currentPage + 1)}
-                    />
-                  </PaginationItem>
-                </Pagination>
-              </div>
+          <Pagination>
+            <PaginationItem disabled={currentPage === 1}>
+              <PaginationLink
+                previous
+                href="#"
+                onClick={() => handlePageChange(currentPage - 1)}
+              />
+            </PaginationItem>
+
+            {[...Array(totalPages)].map((_, index) => (
+              <PaginationItem active={currentPage === index + 1} key={index}>
+                <PaginationLink
+                  href="#"
+                  onClick={() => handlePageChange(index + 1)}
+                >
+                  {index + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+
+            <PaginationItem disabled={currentPage === totalPages}>
+              <PaginationLink
+                next
+                href="#"
+                onClick={() => handlePageChange(currentPage + 1)}
+              />
+            </PaginationItem>
+          </Pagination>
+        </div>
       </div>
 
       {clickProduct && viewProductModal()}
