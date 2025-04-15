@@ -327,24 +327,24 @@ function ViewProducts() {
                   <strong>Description:</strong> {product.product_desc} <br />
                   <strong>Quantity:</strong> {product.product_quantity}
                 </Card.Text>
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-around row m-0">
                   <Button
                     variant="primary"
-                    size="sm"
+                    size="sm" className="w-auto mb-2"
                     onClick={() => openModal(product.product_id)}
                   >
                     View
                   </Button>
                   <Button
                     variant="info"
-                    size="sm"
+                    size="sm" className="w-auto mb-2"
                     onClick={() => openUpdateModal(product.product_id)}
                   >
                     Update
                   </Button>
                   <Button
                     variant="danger"
-                    size="sm"
+                    size="sm" className="w-auto mb-2"
                     onClick={() => handleDelete(product.product_id)}
                   >
                     Delete
